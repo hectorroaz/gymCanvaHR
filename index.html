@@ -852,7 +852,17 @@ function toggleDetails(id) {
 }
 
 function youtube(name) {
-    window.open(`https://www.youtube.com/results?search_query=tecnica ${encodeURIComponent(name)}`, '_blank');
+    const query = encodeURIComponent("tecnica " + name);
+    const appUrl = `youtube://results?search_query=${query}`;
+    const webUrl = `https://www.youtube.com/results?search_query=${query}`;
+
+    // Intenta abrir la app de YouTube
+    window.location.href = appUrl;
+
+    // Si no está instalada, abre la web en la MISMA vista
+    setTimeout(() => {
+        window.location.href = webUrl;
+    }, 500);
 }
 
 // ====== SESIÓN Y HISTORIAL ======
